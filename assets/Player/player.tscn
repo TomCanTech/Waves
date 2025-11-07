@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://cbq2tf57xqvwu"]
+
+[ext_resource type="Script" uid="uid://dejmvq56gke8l" path="res://assets/Player/player.gd" id="1_hqtel"]
+[ext_resource type="Texture2D" uid="uid://0kpslo775aex" path="res://assets/UI/MainCutout.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://cg8nybmeg76lb" path="res://assets/UI/Reticle.png" id="3_2hs0m"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7mycd"]
+
+[node name="PlayerBody" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_hqtel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(223, 180)
+shape = SubResource("CircleShape2D_7mycd")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+
+[node name="EmptySpace" type="ColorRect" parent="Camera2D"]
+z_index = 1
+offset_right = 446.0
+offset_bottom = 360.0
+color = Color(0.13518462, 0.1790472, 0.24322748, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="MainCutout" type="Sprite2D" parent="Camera2D"]
+z_index = 9
+position = Vector2(320, 180)
+texture = ExtResource("2_sweqy")
+
+[node name="Reticle" type="Sprite2D" parent="Camera2D"]
+modulate = Color(1, 1, 1, 0.5294118)
+z_index = 9
+position = Vector2(223, 180)
+texture = ExtResource("3_2hs0m")

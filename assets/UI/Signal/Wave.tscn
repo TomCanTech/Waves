@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cumfe5g1563km"]
+
+[ext_resource type="Shader" uid="uid://cc0ucxcjua488" path="res://assets/UI/Signal/sine.gdshader" id="1_eec5o"]
+[ext_resource type="Script" uid="uid://c0j84ai5wsl7j" path="res://assets/UI/Signal/wave.gd" id="1_q25ab"]
+[ext_resource type="Texture2D" uid="uid://coihajov1k6py" path="res://assets/UI/Signal/WaveFormWindow.png" id="2_q25ab"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7eh7r"]
+shader = ExtResource("1_eec5o")
+shader_parameter/size = 0.98000004655
+shader_parameter/time_scale = 2.0
+shader_parameter/freq = 2.0
+
+[node name="Wave" type="Node2D"]
+script = ExtResource("1_q25ab")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 10
+material = SubResource("ShaderMaterial_7eh7r")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.5
+offset_top = -47.0
+offset_right = 94.5
+offset_bottom = 47.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="WaveFormWindow" type="Sprite2D" parent="."]
+z_index = 9
+texture = ExtResource("2_q25ab")
