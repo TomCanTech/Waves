@@ -5,8 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://coihajov1k6py" path="res://assets/UI/Signal/WaveFormWindow.png" id="2_q25ab"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7eh7r"]
+resource_local_to_scene = true
 shader = ExtResource("1_eec5o")
-shader_parameter/size = 0.98000004655
+shader_parameter/size = 0.950000045125
 shader_parameter/time_scale = 2.0
 shader_parameter/freq = 2.0
 
@@ -27,6 +28,7 @@ offset_right = 94.5
 offset_bottom = 47.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0.90588236, 1, 0.23921569, 0.7490196)
 
 [node name="WaveFormWindow" type="Sprite2D" parent="."]
 z_index = 9
