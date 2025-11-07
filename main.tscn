@@ -1,45 +1,21 @@
-[gd_scene load_steps=14 format=3 uid="uid://2f3axxmf3kj5"]
+[gd_scene load_steps=8 format=3 uid="uid://2f3axxmf3kj5"]
 
-[ext_resource type="Shader" uid="uid://cpr7fch1uvais" path="res://main.gdshader" id="1_272bh"]
-[ext_resource type="Texture2D" uid="uid://0kpslo775aex" path="res://raw_assets/UI/MainCutout.png" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://cixe6kw41hsmf" path="res://raw_assets/Bodies/Planet1.png" id="2_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://d1b6pe5wilm1f" path="res://raw_assets/Bodies/Sun1.png" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://bfw21l48d5ib3" path="res://raw_assets/Bodies/Sun2.png" id="4_7mycd"]
-[ext_resource type="Texture2D" uid="uid://xrwa0y1h54rn" path="res://raw_assets/Bodies/Planet2.png" id="4_lquwl"]
-[ext_resource type="Script" uid="uid://dejmvq56gke8l" path="res://player_body.gd" id="5_7mycd"]
-[ext_resource type="Texture2D" uid="uid://cg8nybmeg76lb" path="res://raw_assets/UI/Reticle.png" id="8_5vw27"]
-[ext_resource type="Texture2D" uid="uid://coihajov1k6py" path="res://raw_assets/UI/WaveFormWindow.png" id="9_kek77"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5vw27"]
-resource_local_to_scene = true
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_kek77"]
-viewport_path = NodePath("SubViewport")
+[ext_resource type="Texture2D" uid="uid://cixe6kw41hsmf" path="res://assets/Celestial Bodies/Planet1.png" id="2_1bvp3"]
+[ext_resource type="Texture2D" uid="uid://d1b6pe5wilm1f" path="res://assets/Celestial Bodies/Sun1.png" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://bfw21l48d5ib3" path="res://assets/Celestial Bodies/Sun2.png" id="4_7mycd"]
+[ext_resource type="Texture2D" uid="uid://xrwa0y1h54rn" path="res://assets/Celestial Bodies/Planet2.png" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cbq2tf57xqvwu" path="res://assets/Player/player.tscn" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://cumfe5g1563km" path="res://assets/UI/Signal/Wave.tscn" id="6_7mycd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4c57u"]
 resource_local_to_scene = true
-shader = ExtResource("1_272bh")
-shader_parameter/tex = SubResource("ViewportTexture_kek77")
-shader_parameter/mask_type = 1
-shader_parameter/curve = 0.0
-shader_parameter/color_offset = 2.3749999966682367e-08
-shader_parameter/mask_brightness = 1.0
-shader_parameter/aspect = 0.75
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_7mycd"]
 
 [node name="Main" type="Node2D"]
-material = SubResource("ShaderMaterial_5vw27")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_4c57u")
 offset_right = 40.0
 offset_bottom = 40.0
-
-[node name="SubViewport" type="SubViewport" parent="."]
-size = Vector2i(1920, 360)
-size_2d_override = Vector2i(1920, 1080)
-size_2d_override_stretch = true
 
 [node name="Bodies" type="Node2D" parent="."]
 z_index = 5
@@ -60,36 +36,7 @@ texture = ExtResource("4_7mycd")
 position = Vector2(121, 232)
 texture = ExtResource("4_lquwl")
 
-[node name="PlayerBody" type="RigidBody2D" parent="."]
-gravity_scale = 0.0
-script = ExtResource("5_7mycd")
+[node name="PlayerBody" parent="." instance=ExtResource("5_lquwl")]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
-position = Vector2(223, 180)
-shape = SubResource("CircleShape2D_7mycd")
-
-[node name="Camera2D" type="Camera2D" parent="PlayerBody"]
-anchor_mode = 0
-
-[node name="EmptySpace" type="ColorRect" parent="PlayerBody/Camera2D"]
-z_index = 1
-offset_right = 446.0
-offset_bottom = 360.0
-color = Color(0.13518462, 0.1790472, 0.24322748, 1)
-metadata/_edit_use_anchors_ = true
-
-[node name="MainCutout" type="Sprite2D" parent="PlayerBody/Camera2D"]
-z_index = 9
-position = Vector2(320, 180)
-texture = ExtResource("1_ig7tw")
-
-[node name="Reticle" type="Sprite2D" parent="PlayerBody/Camera2D"]
-modulate = Color(1, 1, 1, 0.5294118)
-z_index = 9
-position = Vector2(223, 180)
-texture = ExtResource("8_5vw27")
-
-[node name="WaveFormWindow" type="Sprite2D" parent="PlayerBody/Camera2D"]
-z_index = 9
+[node name="WaveForm" parent="." instance=ExtResource("6_7mycd")]
 position = Vector2(538, 54)
-texture = ExtResource("9_kek77")
